@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- ============================================================
+     GANTI META DI BAWAH DENGAN DATA ANDA
+     ============================================================ -->
+<title>Nama Anda — IT Strategy &amp; Digital Transformation Advisor</title>
+<meta name="description" content="Penasihat strategi TI untuk transformasi digital korporasi dan pemerintahan digital. Valuasi investasi TI, tata kelola, dan arsitektur enterprise.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================================
+   1. DESIGN TOKENS — palet firma konsultan
+   ============================================================ */
+:root{
+  --navy:      #0e2038;   /* latar utama gelap  */
+  --navy-2:    #122844;   /* latar alternatif   */
+  --panel:     #16304f;   /* kartu              */
+  --panel-hov: #1b3a5e;
+  --line:      #24466e;
+  --line-hi:   #3a5f8d;
+
+  --paper:     #f7f5f0;   /* section terang     */
+  --paper-2:   #efece4;
+  --ink:       #1c2530;   /* teks di atas paper */
+  --ink-mut:   #5a6675;
+
+  --text:      #e9ecf1;
+  --muted:     #a7b4c6;
+  --dim:       #6e7f96;
+
+  --gold:      #c8a35a;
+  --gold-hi:   #dcbb75;
+  --gold-soft: rgba(200,163,90,.16);
+
+  --serif: "Libre Caslon Text", Georgia, serif;
+  --sans:  "Archivo", system-ui, sans-serif;
+  --mono:  "IBM Plex Mono", monospace;
+
+  --maxw: 1080px;
+  --radius: 6px;
+}
+
+/* ============================================================
+   2. RESET & BASE
+   ============================================================ */
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:84px}
+body{
+  background:var(--navy);
+  color:var(--text);
+  font-family:var(--sans);
+  line-height:1.7;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+::selection{background:var(--gold);color:var(--navy)}
+
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+.gold{color:var(--gold)}
+
+/* label seksi: garis emas + eyebrow kecil + judul serif */
+.sec-eyebrow{
+  font-family:var(--sans);font-size:.72rem;font-weight:600;
+  letter-spacing:3px;text-transform:uppercase;color:var(--gold);
+  display:flex;align-items:center;gap:14px;margin-bottom:14px;
+}
+.sec-eyebrow::before{content:"";width:34px;height:1px;background:var(--gold)}
+.sec-title{
+  font-family:var(--serif);font-size:2rem;font-weight:700;
+  letter-spacing:-.3px;margin-bottom:36px;line-height:1.25;
+}
+section{padding:92px 0;position:relative}
+.bg-alt{background:var(--navy-2)}
+
+/* section terang (paper) */
+.bg-paper{background:var(--paper);color:var(--ink)}
+.bg-paper .sec-title{color:var(--ink)}
+.bg-paper .muted-p{color:var(--ink-mut)}
+
+/* ============================================================
+   3. NAVBAR
+   ============================================================ */
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  backdrop-filter:blur(12px);
+  background:rgba(14,32,56,.78);
+  border-bottom:1px solid transparent;
+  transition:.3s;
+}
+.nav.scrolled{border-bottom-color:var(--line);background:rgba(14,32,56,.94)}
+.nav-inner{
+  max-width:var(--maxw);margin:0 auto;padding:18px 24px;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.brand{
+  font-family:var(--serif);font-weight:700;font-size:1.05rem;color:var(--text);
+  display:flex;align-items:baseline;gap:9px;
+}
+.brand .mark{
+  width:10px;height:10px;background:var(--gold);display:inline-block;
+  transform:rotate(45deg);position:relative;top:-1px;
+}
+.nav-links{display:flex;align-items:center;gap:28px}
+.nav-links a{
+  font-size:.82rem;font-weight:500;letter-spacing:.6px;text-transform:uppercase;
+  color:var(--muted);transition:color .2s;position:relative;
+}
+.nav-links a:hover{color:var(--text)}
+.nav-links a::after{
+  content:"";position:absolute;left:0;bottom:-7px;height:2px;width:0;
+  background:var(--gold);transition:width .25s;
+}
+.nav-links a:hover::after{width:100%}
+.nav-toggle{display:none;background:none;border:0;color:var(--text);cursor:pointer}
+
+/* ============================================================
+   4. HERO
+   ============================================================ */
+.hero{padding-top:160px;padding-bottom:70px}
+.hero-grid{display:grid;grid-template-columns:1fr 300px;gap:52px;align-items:center}
+
+.hero-kicker{
+  font-size:.74rem;font-weight:600;letter-spacing:3px;text-transform:uppercase;
+  color:var(--gold);margin-bottom:20px;display:flex;align-items:center;gap:14px;
+}
+.hero-kicker::before{content:"";width:34px;height:1px;background:var(--gold)}
+.hero h1{
+  font-family:var(--serif);font-weight:700;font-size:2.6rem;line-height:1.22;
+  letter-spacing:-.5px;margin-bottom:22px;max-width:20ch;
+}
+.hero h1 em{font-style:italic;color:var(--gold-hi)}
+.hero-sub{color:var(--muted);max-width:52ch;margin-bottom:14px}
+.hero-status{
+  font-size:.82rem;color:var(--muted);display:flex;align-items:center;gap:9px;margin-bottom:30px;
+}
+.hero-status .dot-live{width:8px;height:8px;border-radius:50%;background:#3ecf8e;box-shadow:0 0 0 3px rgba(62,207,142,.18)}
+
+.hero-btns{display:flex;gap:14px;flex-wrap:wrap}
+.btn{
+  font-family:var(--sans);font-size:.82rem;font-weight:600;letter-spacing:.8px;text-transform:uppercase;
+  padding:13px 26px;cursor:pointer;display:inline-flex;align-items:center;gap:9px;
+  border:1px solid transparent;transition:.22s;border-radius:2px;
+}
+.btn-primary{background:var(--gold);color:var(--navy)}
+.btn-primary:hover{background:var(--gold-hi);transform:translateY(-2px);box-shadow:0 10px 24px -8px rgba(200,163,90,.5)}
+.btn-ghost{background:transparent;color:var(--text);border-color:var(--line-hi)}
+.btn-ghost:hover{border-color:var(--gold);color:var(--gold-hi)}
+.bg-paper .btn-ghost{color:var(--ink);border-color:#c9c2b2}
+.bg-paper .btn-ghost:hover{border-color:var(--gold);color:#8a6d33}
+
+/* potret */
+.portrait-wrap{display:flex;justify-content:center}
+.portrait{
+  width:250px;height:300px;position:relative;
+  background:linear-gradient(160deg,#1b3a5e,#122844 70%);
+  border:1px solid var(--line);
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--serif);font-size:3rem;color:var(--dim);
+  overflow:hidden;
+}
+.portrait::after{
+  content:"";position:absolute;inset:auto -14px -14px auto;width:70%;height:70%;
+  border-right:2px solid var(--gold);border-bottom:2px solid var(--gold);
+  pointer-events:none;
+}
+/* Ganti dengan foto formal Anda:
+   <div class="portrait"><img src="me.jpg" alt="Nama Anda"></div> */
+.portrait img{width:100%;height:100%;object-fit:cover}
+
+/* ============================================================
+   5. ABOUT (paper)
+   ============================================================ */
+.about-grid{display:grid;grid-template-columns:1fr 300px;gap:52px;align-items:start}
+.lead{
+  font-family:var(--serif);font-size:1.18rem;line-height:1.75;color:var(--ink);
+  margin-bottom:28px;max-width:56ch;
+}
+.about-points{list-style:none;display:flex;flex-direction:column;gap:22px}
+.about-points li{padding-left:24px;position:relative;color:var(--ink-mut);max-width:62ch}
+.about-points li::before{
+  content:"";position:absolute;left:0;top:.55em;width:10px;height:10px;
+  background:var(--gold);transform:rotate(45deg);
+}
+.about-points b{color:var(--ink)}
+
+.find{
+  background:#fff;border:1px solid #e3ddd0;border-top:3px solid var(--gold);
+  padding:22px;box-shadow:0 8px 24px -14px rgba(28,37,48,.2);
+}
+.find h4{font-size:.7rem;letter-spacing:2.5px;color:var(--ink-mut);margin-bottom:16px;font-weight:600}
+.find-link{
+  display:flex;align-items:center;gap:11px;
+  border:1px solid #e3ddd0;padding:12px 14px;margin-bottom:10px;
+  font-size:.84rem;color:var(--ink-mut);transition:.2s;background:#fbfaf7;
+}
+.find-link:hover{border-color:var(--gold);color:var(--ink);transform:translateX(3px)}
+.find-link svg{flex:none;color:#9a8b68}
+.cred-card{
+  display:flex;align-items:center;gap:13px;
+  background:var(--navy);padding:13px 14px;
+}
+.cred-badge{
+  width:40px;height:40px;flex:none;background:var(--gold);
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--serif);font-weight:700;color:var(--navy);font-size:1rem;
+}
+.cred-meta{font-size:.78rem;line-height:1.45}
+.cred-meta .h{color:var(--text);font-weight:600}
+.cred-meta .s{color:var(--dim)}
+
+/* stats */
+.stats{display:flex;gap:0;margin:46px 0 36px;border-top:1px solid #ddd6c7;border-bottom:1px solid #ddd6c7}
+.stat{padding:22px 40px 22px 0;margin-right:40px;border-right:1px solid #ddd6c7}
+.stat:last-child{border-right:0}
+.stat .num{font-family:var(--serif);font-size:2.1rem;font-weight:700;color:var(--ink)}
+.stat .num span{color:var(--gold)}
+.stat .lbl{font-size:.78rem;color:var(--ink-mut);letter-spacing:.5px;text-transform:uppercase;margin-top:2px}
+
+/* banner insight (pengganti proof-of-work) */
+.proof{
+  background:var(--navy);color:var(--text);
+  border-left:3px solid var(--gold);
+  padding:26px 28px;display:flex;align-items:center;justify-content:space-between;gap:22px;flex-wrap:wrap;
+}
+.proof-txt .k{font-size:.7rem;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold);margin-bottom:7px;font-weight:600}
+.proof-txt p{font-family:var(--serif);font-size:1.02rem;max-width:46ch}
+.proof-btns{display:flex;gap:12px;flex:none}
+
+/* ============================================================
+   6. EXPERTISE / LAYANAN (navy)
+   ============================================================ */
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.card{
+  background:var(--panel);border:1px solid var(--line);
+  padding:26px 24px;transition:.25s;position:relative;
+}
+.card::before{
+  content:"";position:absolute;top:0;left:0;right:0;height:2px;
+  background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform .3s;
+}
+.card:hover{background:var(--panel-hov);border-color:var(--line-hi);transform:translateY(-4px)}
+.card:hover::before{transform:scaleX(1)}
+.card .no{
+  font-family:var(--serif);font-size:.9rem;color:var(--gold);margin-bottom:14px;
+  display:inline-block;border-bottom:1px solid var(--gold-soft);padding-bottom:4px;
+}
+.card h3{font-family:var(--serif);font-size:1.05rem;margin-bottom:10px;line-height:1.4}
+.card p{color:var(--muted);font-size:.87rem;line-height:1.65}
+
+/* ============================================================
+   7. ENGAGEMENTS / PROJECTS (paper)
+   ============================================================ */
+.proj{
+  background:#fff;border:1px solid #e3ddd0;
+  padding:26px 24px;transition:.25s;display:flex;flex-direction:column;
+  box-shadow:0 6px 18px -14px rgba(28,37,48,.18);
+}
+.proj:hover{border-color:var(--gold);transform:translateY(-4px);box-shadow:0 14px 30px -16px rgba(28,37,48,.3)}
+.proj-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.proj-sector{
+  font-size:.66rem;font-weight:600;letter-spacing:1.6px;text-transform:uppercase;
+  color:#8a6d33;background:var(--gold-soft);padding:4px 10px;
+}
+.proj-arrow{color:#c9c2b2;transition:.2s;font-size:1rem}
+.proj:hover .proj-arrow{color:var(--gold);transform:translateX(3px)}
+.proj h3{font-family:var(--serif);font-size:1.02rem;color:var(--ink);margin-bottom:9px;line-height:1.45}
+.proj p{color:var(--ink-mut);font-size:.86rem;line-height:1.65;flex:1}
+.tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:16px}
+.tag{
+  font-size:.68rem;color:var(--ink-mut);letter-spacing:.4px;
+  border:1px solid #e3ddd0;padding:3px 9px;background:#fbfaf7;
+}
+.note{
+  font-size:.82rem;color:var(--ink-mut);font-style:italic;font-family:var(--serif);
+  margin-top:28px;display:flex;align-items:center;gap:9px;
+}
+
+/* ============================================================
+   8. CERTIFICATIONS (navy)
+   ============================================================ */
+.grid-cert{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.cert{
+  background:var(--panel);border:1px solid var(--line);
+  overflow:hidden;transition:.25s;
+}
+.cert:hover{border-color:var(--gold);transform:translateY(-4px)}
+.cert-img{
+  height:110px;
+  background:linear-gradient(135deg,#1b3a5e,#0e2038);
+  border-bottom:1px solid var(--line);
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--serif);color:var(--dim);font-size:.78rem;letter-spacing:2px;
+}
+/* Ganti: <div class="cert-img"><img src="cert1.png" alt="..."></div> */
+.cert-img img{width:100%;height:100%;object-fit:cover}
+.cert-body{padding:16px 18px 18px}
+.cert-body h4{font-family:var(--serif);font-size:.92rem;margin-bottom:4px;line-height:1.4}
+.cert-body .iss{font-size:.76rem;color:var(--muted);margin-bottom:12px}
+.cert-foot{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.cert-date{font-size:.7rem;color:var(--dim)}
+.pill{font-size:.64rem;letter-spacing:.8px;text-transform:uppercase;padding:3px 9px;font-weight:600}
+.pill.ok{background:rgba(62,207,142,.12);color:#3ecf8e;border:1px solid rgba(62,207,142,.3)}
+.pill.exp{background:var(--gold-soft);color:var(--gold-hi);border:1px solid rgba(200,163,90,.35)}
+.verify{
+  font-size:.68rem;letter-spacing:.8px;text-transform:uppercase;color:var(--gold);
+  border:1px solid rgba(200,163,90,.4);padding:4px 10px;transition:.2s;font-weight:600;
+}
+.verify:hover{background:var(--gold);color:var(--navy)}
+
+/* ============================================================
+   9. TRACK RECORD / SEKTOR (paper) — pengganti Hall of Fame
+   ============================================================ */
+.hof-sub{color:var(--ink-mut);font-size:.9rem;margin-top:-24px;margin-bottom:32px;max-width:60ch}
+.hof-grid{display:grid;grid-template-columns:1fr 1.3fr;gap:20px}
+.panel{
+  background:#fff;border:1px solid #e3ddd0;padding:24px;
+  box-shadow:0 6px 18px -14px rgba(28,37,48,.18);
+}
+.panel-head{
+  font-size:.72rem;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;
+  color:#8a6d33;margin-bottom:18px;display:flex;align-items:center;gap:10px;
+}
+.panel-head::before{content:"";width:20px;height:1px;background:var(--gold)}
+.quote{
+  font-family:var(--serif);font-style:italic;color:var(--ink);
+  font-size:1rem;line-height:1.8;padding:8px 0;
+}
+.quote-by{font-family:var(--sans);font-style:normal;font-size:.78rem;color:var(--ink-mut);margin-top:14px;letter-spacing:.5px}
+.logo-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+.logo{
+  aspect-ratio:1;background:#fbfaf7;border:1px solid #e3ddd0;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:6px;transition:.2s;
+}
+.logo:hover{border-color:var(--gold);background:#fff}
+.logo .em{font-size:1.25rem}
+.logo .nm{font-size:.56rem;color:var(--ink-mut);text-align:center;letter-spacing:.4px;padding:0 4px}
+
+/* ============================================================
+   10. CONTACT (navy)
+   ============================================================ */
+.contact-txt{color:var(--muted);max-width:54ch;margin-bottom:18px}
+.avail{
+  font-size:.8rem;letter-spacing:1px;text-transform:uppercase;color:#3ecf8e;
+  display:inline-flex;align-items:center;gap:9px;margin-bottom:28px;font-weight:600;
+}
+.avail .dot-live{width:8px;height:8px;border-radius:50%;background:#3ecf8e;box-shadow:0 0 0 3px rgba(62,207,142,.18)}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;max-width:660px}
+.contact-card{
+  background:var(--panel);border:1px solid var(--line);
+  padding:18px 20px;display:flex;align-items:center;gap:15px;transition:.2s;cursor:pointer;
+}
+.contact-card:hover{border-color:var(--gold)}
+.cc-ico{
+  width:42px;height:42px;flex:none;
+  background:var(--gold-soft);border:1px solid rgba(200,163,90,.35);
+  display:flex;align-items:center;justify-content:center;color:var(--gold);
+}
+.cc-meta .k{font-size:.64rem;letter-spacing:2px;color:var(--dim);text-transform:uppercase;font-weight:600}
+.cc-meta .v{font-size:.88rem;color:var(--text)}
+.cc-out{margin-left:auto;color:var(--dim)}
+
+/* ============================================================
+   11. FOOTER
+   ============================================================ */
+footer{padding:46px 0;text-align:center;border-top:1px solid var(--line);background:var(--navy)}
+footer .cl{font-family:var(--serif);font-style:italic;font-size:.9rem;color:var(--muted)}
+footer .cp{font-size:.74rem;color:var(--dim);margin-top:10px;letter-spacing:.5px}
+
+/* ============================================================
+   12. SCROLL REVEAL & RESPONSIVE
+   ============================================================ */
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .6s ease, transform .6s ease}
+.reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){
+  .reveal{opacity:1;transform:none;transition:none}
+  html{scroll-behavior:auto}
+}
+@media (max-width:860px){
+  .hero-grid,.about-grid{grid-template-columns:1fr}
+  .portrait-wrap{order:-1}
+  .grid-3,.grid-cert{grid-template-columns:1fr 1fr}
+  .hof-grid{grid-template-columns:1fr}
+  .logo-grid{grid-template-columns:repeat(4,1fr)}
+  .hero h1{font-size:2.1rem}
+  .stats{flex-wrap:wrap}
+  .stat{border-right:0;padding-right:0}
+}
+@media (max-width:640px){
+  .nav-links{
+    position:fixed;inset:62px 0 auto 0;flex-direction:column;gap:0;
+    background:rgba(14,32,56,.98);border-bottom:1px solid var(--line);
+    padding:14px 24px;transform:translateY(-140%);transition:transform .3s;align-items:flex-start;
+  }
+  .nav-links.open{transform:none}
+  .nav-links a{padding:12px 0;width:100%}
+  .nav-links a::after{display:none}
+  .nav-toggle{display:block}
+  .grid-3,.grid-cert,.contact-grid{grid-template-columns:1fr}
+  .logo-grid{grid-template-columns:repeat(3,1fr)}
+  .sec-title{font-size:1.6rem}
+  .hero{padding-top:130px}
+}
+</style>
+</head>
+<body>
+
+<!-- ==================== NAV ==================== -->
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <!-- GANTI nama brand -->
+    <a href="#top" class="brand"><span class="mark"></span>Nama Anda</a>
+    <div class="nav-links" id="navLinks">
+      <a href="#about">Tentang</a>
+      <a href="#projects">Engagement</a>
+      <a href="#certs">Kredensial</a>
+      <a href="#insight">Publikasi</a>
+      <a href="#insight">Insight</a>
+      <a href="#contact">Kontak</a>
+    </div>
+    <button class="nav-toggle" id="navToggle" aria-label="menu">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+  </div>
+</nav>
+
+<span id="top"></span>
+
+<!-- ==================== HERO ==================== -->
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="hero-kicker">IT Strategy &amp; Digital Government Advisory</div>
+      <h1 class="reveal in">Memastikan investasi teknologi Anda <em>terbukti bernilai</em> — sebelum anggaran dikeluarkan.</h1>
+      <p class="hero-sub">Penasihat strategi TI untuk transformasi digital korporasi dan pemerintahan digital. Spesialisasi pada valuasi investasi TI, analisis kebutuhan pra-pengadaan, tata kelola TI, dan arsitektur enterprise.</p>
+      <div class="hero-status"><span class="dot-live"></span> Menerima engagement advisory &amp; pendampingan strategis</div>
+      <div class="hero-btns">
+        <a href="#projects" class="btn btn-primary">Lihat Engagement</a>
+        <a href="#contact" class="btn btn-ghost">Jadwalkan Diskusi</a>
+      </div>
+    </div>
+    <div class="portrait-wrap">
+      <!-- GANTI dengan foto formal: <div class="portrait"><img src="me.jpg" alt="Nama Anda"></div> -->
+      <div class="portrait">NA</div>
+    </div>
+  </div>
+</header>
+
+<!-- ==================== ABOUT (paper) ==================== -->
+<section id="about" class="bg-paper">
+  <div class="wrap">
+    <div class="about-grid reveal">
+      <div>
+        <div class="sec-eyebrow">Tentang</div>
+        <h2 class="sec-title">Strategi bisnis hanya berjalan jika strategi TI-nya bisa dipertanggungjawabkan.</h2>
+        <p class="lead">Saya membantu organisasi menjawab satu pertanyaan yang sering diabaikan sebelum pengadaan: <em>apakah investasi TI ini benar-benar layak — dan berapa nilai bisnisnya dalam angka?</em> Praktik saya berdiri di tiga pilar:</p>
+        <ul class="about-points">
+          <li><b>Valuasi investasi TI &amp; analisis pra-pengadaan.</b> Kuantifikasi manfaat bisnis dari solusi TI menggunakan metodologi Information Economics dan tabel nilai bisnis SI/TI generik — sehingga keputusan pengadaan berbasis ROI yang terdiskonto risiko, bukan asumsi.</li>
+          <li><b>Strategi transformasi digital korporasi.</b> Menjembatani rencana strategis perusahaan dengan arsitektur enterprise dan portofolio inisiatif digital yang terprioritisasi, terukur, dan dapat dieksekusi bersama vendor maupun principal.</li>
+          <li><b>Pemerintahan digital (SPBE).</b> Pendampingan pimpinan kementerian, pemerintah provinsi, dan kabupaten/kota dalam merancang tata kelola, peta jalan, dan justifikasi anggaran untuk penerapan pemerintahan berbasis elektronik.</li>
+        </ul>
+        <div class="stats">
+          <div class="stat"><div class="num">7<span>-fase</span></div><div class="lbl">Kerangka Investasi TI</div></div>
+          <div class="stat"><div class="num">73<span>+</span></div><div class="lbl">Kategori Nilai Bisnis Terkuantifikasi</div></div>
+          <div class="stat"><div class="num">10<span>+</span></div><div class="lbl">Tahun Praktik Advisory</div></div>
+        </div>
+      </div>
+
+      <aside class="find">
+        <h4>TERHUBUNG DI</h4>
+        <a class="find-link" href="https://linkedin.com/in/yourhandle" target="_blank" rel="noopener">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.4 20.4h-3.6v-5.6c0-1.3 0-3-1.9-3s-2.1 1.4-2.1 2.9v5.7H9.2V9h3.4v1.6h.1c.5-.9 1.7-1.9 3.4-1.9 3.6 0 4.3 2.4 4.3 5.5v6.2zM5.3 7.4a2.1 2.1 0 1 1 0-4.2 2.1 2.1 0 0 1 0 4.2zM7.1 20.4H3.5V9h3.6v11.4z"/></svg>
+          linkedin.com/in/yourhandle
+        </a>
+        <a class="find-link" href="https://github.com/yourhandle" target="_blank" rel="noopener">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.7.5.5 5.7.5 12a11.5 11.5 0 0 0 7.9 10.9c.6.1.8-.2.8-.5v-2c-3.2.7-3.9-1.4-3.9-1.4-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.4-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17.3 4.7 18.3 5 18.3 5c.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.6.8.5A11.5 11.5 0 0 0 23.5 12C23.5 5.7 18.3.5 12 .5z"/></svg>
+          github.com/yourhandle
+        </a>
+        <a class="find-link" href="#" target="_blank" rel="noopener">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+          Publikasi &amp; Materi Kelas
+        </a>
+        <div class="cred-card">
+          <div class="cred-badge">EA</div>
+          <div class="cred-meta">
+            <div class="h">Enterprise Architecture &amp; IT Governance</div>
+            <div class="s">Konsultan bersertifikasi · Trainer</div>
+          </div>
+        </div>
+      </aside>
+    </div>
+
+    <!-- banner insight -->
+    <div class="proof reveal" id="insight">
+      <div class="proof-txt">
+        <div class="k">Perspektif</div>
+        <p>Ingin memahami cara kerja pendekatan saya? Baca ringkasan metodologi, atau ikuti kelas dan sesi berbagi terdekat.</p>
+      </div>
+      <div class="proof-btns">
+        <a href="#" class="btn btn-primary">Baca Publikasi</a>
+        <a href="#" class="btn btn-ghost">Jadwal Kelas</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== EXPERTISE / LAYANAN (navy) ==================== -->
+<section id="expertise" class="bg-alt">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="sec-eyebrow">Layanan</div>
+      <h2 class="sec-title">Area praktik</h2>
+    </div>
+    <div class="grid-3 reveal">
+      <div class="card"><div class="no">01</div><h3>Valuasi Investasi TI</h3><p>Kuantifikasi manfaat bisnis solusi TI melalui kerangka 7 fase: dari identifikasi kebutuhan, pemetaan nilai bisnis, hingga ROI terdiskonto risiko sebagai dasar keputusan investasi.</p></div>
+      <div class="card"><div class="no">02</div><h3>Analisis Kebutuhan Pra-Pengadaan</h3><p>Layanan advisory bagi vendor dan principal TI untuk membantu klien mereka mendefinisikan kebutuhan dan justifikasi nilai — mempercepat siklus penjualan solusi enterprise.</p></div>
+      <div class="card"><div class="no">03</div><h3>Strategi Transformasi Digital</h3><p>Menerjemahkan rencana strategis perusahaan menjadi peta jalan digital yang terprioritisasi: portofolio inisiatif, arsitektur target, dan model tata kelola eksekusinya.</p></div>
+      <div class="card"><div class="no">04</div><h3>Pemerintahan Digital (SPBE)</h3><p>Pendampingan kementerian dan pemerintah daerah dalam perencanaan arsitektur SPBE, tata kelola TIK, dan penyusunan justifikasi anggaran berbasis nilai manfaat.</p></div>
+      <div class="card"><div class="no">05</div><h3>Enterprise Architecture &amp; Tata Kelola TI</h3><p>Perancangan arsitektur enterprise dan kerangka tata kelola TI yang menyelaraskan investasi teknologi dengan sasaran bisnis dan regulasi.</p></div>
+      <div class="card"><div class="no">06</div><h3>Pelatihan &amp; Capability Building</h3><p>Kelas dan pendampingan manajemen investasi TI bagi tim strategi, PMO, dan pengelola TIK — membangun kapabilitas internal yang bertahan setelah engagement selesai.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== ENGAGEMENTS (paper) ==================== -->
+<section id="projects" class="bg-paper">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="sec-eyebrow">Rekam Jejak</div>
+      <h2 class="sec-title">Engagement terpilih</h2>
+    </div>
+    <div class="grid-3 reveal">
+      <!-- ulangi blok .proj; ganti dengan engagement nyata Anda (anonimkan klien bila perlu) -->
+      <a class="proj" href="#">
+        <div class="proj-top"><span class="proj-sector">Vendor IT Solution</span><span class="proj-arrow">→</span></div>
+        <h3>Kuantifikasi nilai bisnis untuk proposal solusi enterprise</h3>
+        <p>Membekali tim penjualan vendor dengan analisis kebutuhan dan kalkulasi ROI terdiskonto risiko, memperkuat posisi proposal di hadapan komite anggaran klien.</p>
+        <div class="tags"><span class="tag">Pra-Pengadaan</span><span class="tag">ROI</span><span class="tag">B2B</span></div>
+      </a>
+      <a class="proj" href="#">
+        <div class="proj-top"><span class="proj-sector">Korporasi</span><span class="proj-arrow">→</span></div>
+        <h3>Peta jalan transformasi digital selaras rencana strategis</h3>
+        <p>Menyusun portofolio inisiatif digital tiga tahun dengan prioritisasi berbasis nilai bisnis dan kesiapan organisasi, lengkap dengan model tata kelola eksekusi.</p>
+        <div class="tags"><span class="tag">Roadmap</span><span class="tag">EA</span><span class="tag">Portofolio</span></div>
+      </a>
+      <a class="proj" href="#">
+        <div class="proj-top"><span class="proj-sector">Pemerintah Daerah</span><span class="proj-arrow">→</span></div>
+        <h3>Arsitektur SPBE dan justifikasi anggaran TIK</h3>
+        <p>Mendampingi sekretariat daerah menyusun arsitektur SPBE dan kerangka justifikasi belanja TIK berbasis manfaat terukur bagi layanan publik.</p>
+        <div class="tags"><span class="tag">SPBE</span><span class="tag">Tata Kelola</span><span class="tag">Anggaran</span></div>
+      </a>
+      <a class="proj" href="#">
+        <div class="proj-top"><span class="proj-sector">IT Principal</span><span class="proj-arrow">→</span></div>
+        <h3>Program enablement nilai bisnis untuk mitra distribusi</h3>
+        <p>Merancang kerangka value-selling yang dipakai jaringan mitra principal untuk mengartikulasikan manfaat bisnis produk di segmen enterprise dan pemerintahan.</p>
+        <div class="tags"><span class="tag">Value Selling</span><span class="tag">Channel</span></div>
+      </a>
+      <a class="proj" href="#">
+        <div class="proj-top"><span class="proj-sector">Kementerian</span><span class="proj-arrow">→</span></div>
+        <h3>Kajian kelayakan investasi sistem informasi nasional</h3>
+        <p>Evaluasi kelayakan dan pemetaan manfaat sistem informasi skala nasional sebagai dasar pengambilan keputusan pimpinan dan perencanaan anggaran.</p>
+        <div class="tags"><span class="tag">Kelayakan</span><span class="tag">Kebijakan</span></div>
+      </a>
+      <a class="proj" href="#">
+        <div class="proj-top"><span class="proj-sector">Capability Building</span><span class="proj-arrow">→</span></div>
+        <h3>Kelas manajemen investasi teknologi informasi</h3>
+        <p>Program pelatihan terstruktur bagi praktisi strategi dan pengelola TIK: dari metodologi valuasi hingga praktik penyusunan business case yang dapat dipertahankan.</p>
+        <div class="tags"><span class="tag">Pelatihan</span><span class="tag">Business Case</span></div>
+      </a>
+    </div>
+    <div class="note reveal">Sebagian besar engagement bersifat rahasia berdasarkan perjanjian kerahasiaan. Detail dapat didiskusikan dalam pertemuan langsung.</div>
+  </div>
+</section>
+
+<!-- ==================== KREDENSIAL (navy) ==================== -->
+<section id="certs" class="bg-alt">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="sec-eyebrow">Kredensial</div>
+      <h2 class="sec-title">Sertifikasi &amp; kualifikasi</h2>
+    </div>
+    <div class="grid-cert reveal">
+      <!-- ulangi blok .cert; ganti .cert-img dengan gambar sertifikat asli -->
+      <div class="cert">
+        <div class="cert-img">SERTIFIKAT</div>
+        <div class="cert-body">
+          <h4>Enterprise Architecture Certification</h4>
+          <div class="iss">Nama Penerbit</div>
+          <div class="cert-foot"><span class="cert-date">2024</span><span class="pill ok">Tanpa Masa Berlaku</span><a href="#" class="verify">Verifikasi</a></div>
+        </div>
+      </div>
+      <div class="cert">
+        <div class="cert-img">SERTIFIKAT</div>
+        <div class="cert-body">
+          <h4>IT Governance Professional</h4>
+          <div class="iss">Nama Penerbit</div>
+          <div class="cert-foot"><span class="cert-date">2025</span><span class="pill exp">s.d. 2028</span><a href="#" class="verify">Verifikasi</a></div>
+        </div>
+      </div>
+      <div class="cert">
+        <div class="cert-img">SERTIFIKAT</div>
+        <div class="cert-body">
+          <h4>Asesor Kompetensi</h4>
+          <div class="iss">BNSP</div>
+          <div class="cert-foot"><span class="cert-date">2025</span><span class="pill exp">s.d. 2028</span><a href="#" class="verify">Verifikasi</a></div>
+        </div>
+      </div>
+      <div class="cert">
+        <div class="cert-img">SERTIFIKAT</div>
+        <div class="cert-body">
+          <h4>Project / Program Management</h4>
+          <div class="iss">Nama Penerbit</div>
+          <div class="cert-foot"><span class="cert-date">2024</span><span class="pill exp">s.d. 2027</span><a href="#" class="verify">Verifikasi</a></div>
+        </div>
+      </div>
+      <div class="cert">
+        <div class="cert-img">SERTIFIKAT</div>
+        <div class="cert-body">
+          <h4>Digital Transformation Strategy</h4>
+          <div class="iss">Nama Penerbit</div>
+          <div class="cert-foot"><span class="cert-date">2025</span><span class="pill ok">Tanpa Masa Berlaku</span><a href="#" class="verify">Verifikasi</a></div>
+        </div>
+      </div>
+      <div class="cert">
+        <div class="cert-img">SERTIFIKAT</div>
+        <div class="cert-body">
+          <h4>Trainer / Instruktur Bersertifikasi</h4>
+          <div class="iss">BNSP</div>
+          <div class="cert-foot"><span class="cert-date">2025</span><span class="pill exp">s.d. 2028</span><a href="#" class="verify">Verifikasi</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== TRACK RECORD / SEKTOR (paper) ==================== -->
+<section id="hof" class="bg-paper">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="sec-eyebrow">Kepercayaan</div>
+      <h2 class="sec-title">Sektor yang pernah dilayani</h2>
+    </div>
+    <p class="hof-sub reveal">Bekerja lintas sektor — dari vendor solusi enterprise hingga sekretariat pemerintah daerah — dengan satu benang merah: keputusan teknologi yang dapat dipertanggungjawabkan.</p>
+    <div class="hof-grid reveal">
+      <div class="panel">
+        <div class="panel-head">Testimoni</div>
+        <div class="quote">"Pendekatannya membuat kami akhirnya bisa menjelaskan nilai investasi TI kepada dewan direksi dalam bahasa yang mereka pahami: angka."
+          <div class="quote-by">— Direktur, perusahaan solusi digital B2B (ganti dengan testimoni asli)</div>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="panel-head">Sektor &amp; Institusi</div>
+        <div class="logo-grid">
+          <!-- ganti emoji dengan logo institusi (dengan izin) -->
+          <div class="logo"><span class="em">🏛️</span><span class="nm">Kementerian</span></div>
+          <div class="logo"><span class="em">🏢</span><span class="nm">Pemprov</span></div>
+          <div class="logo"><span class="em">🏙️</span><span class="nm">Pemkab / Pemkot</span></div>
+          <div class="logo"><span class="em">💼</span><span class="nm">Vendor IT</span></div>
+          <div class="logo"><span class="em">🌐</span><span class="nm">IT Principal</span></div>
+          <div class="logo"><span class="em">🏦</span><span class="nm">Jasa Keuangan</span></div>
+          <div class="logo"><span class="em">🏭</span><span class="nm">Manufaktur</span></div>
+          <div class="logo"><span class="em">⚡</span><span class="nm">Energi &amp; Utilitas</span></div>
+          <div class="logo"><span class="em">🎓</span><span class="nm">Pendidikan</span></div>
+          <div class="logo"><span class="em">🏥</span><span class="nm">Kesehatan</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== CONTACT (navy) ==================== -->
+<section id="contact" class="bg-alt">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="sec-eyebrow">Kontak</div>
+      <h2 class="sec-title">Mari diskusikan agenda transformasi Anda</h2>
+    </div>
+    <p class="contact-txt reveal">Tertarik pada advisory strategi TI, pendampingan transformasi digital, kajian investasi pra-pengadaan, atau penerapan pemerintahan digital di organisasi Anda? Hubungi saya kapan saja.</p>
+    <div class="avail reveal"><span class="dot-live"></span> Menerima engagement baru</div>
+    <div class="contact-grid reveal">
+      <div class="contact-card" id="emailCard">
+        <div class="cc-ico">✉</div>
+        <div class="cc-meta"><div class="k">Email</div><div class="v" id="emailVal">klik untuk menampilkan</div></div>
+        <span class="cc-out">⧉</span>
+      </div>
+      <a class="contact-card" href="https://linkedin.com/in/yourhandle" target="_blank" rel="noopener">
+        <div class="cc-ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.4 20.4h-3.6v-5.6c0-1.3 0-3-1.9-3s-2.1 1.4-2.1 2.9v5.7H9.2V9h3.4v1.6h.1c.5-.9 1.7-1.9 3.4-1.9 3.6 0 4.3 2.4 4.3 5.5v6.2zM5.3 7.4a2.1 2.1 0 1 1 0-4.2 2.1 2.1 0 0 1 0 4.2zM7.1 20.4H3.5V9h3.6v11.4z"/></svg></div>
+        <div class="cc-meta"><div class="k">LinkedIn</div><div class="v">/in/yourhandle</div></div>
+        <span class="cc-out">↗</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== FOOTER ==================== -->
+<footer>
+  <div class="cl">Keputusan teknologi yang baik dimulai dari pertanyaan bisnis yang tepat.</div>
+  <div class="cp">© 2026 Nama Anda · IT Strategy &amp; Digital Government Advisory</div>
+</footer>
+
+<script>
+/* ---- navbar shadow on scroll ---- */
+const nav = document.getElementById('nav');
+addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 20));
+
+/* ---- mobile menu ---- */
+const toggle = document.getElementById('navToggle');
+const links = document.getElementById('navLinks');
+toggle.addEventListener('click', () => links.classList.toggle('open'));
+links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => links.classList.remove('open')));
+
+/* ---- email reveal (anti-scraper) — ganti u & d dengan email Anda ---- */
+const emailCard = document.getElementById('emailCard');
+const emailVal = document.getElementById('emailVal');
+const u = 'anda', d = 'contoh.com';
+let shown = false;
+emailCard.addEventListener('click', () => {
+  const addr = u + '@' + d;
+  if(!shown){ emailVal.textContent = addr; shown = true; }
+  else { navigator.clipboard?.writeText(addr); emailVal.textContent = 'tersalin!'; setTimeout(()=>emailVal.textContent = addr, 1200); }
+});
+
+/* ---- scroll reveal ---- */
+const io = new IntersectionObserver((es) => {
+  es.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+}, {threshold:.12});
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+</body>
+</html>
