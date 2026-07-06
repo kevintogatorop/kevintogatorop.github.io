@@ -626,32 +626,49 @@ footer .cp{font-size:.74rem;color:var(--dim);margin-top:10px;letter-spacing:.5px
     </div>
     <div class="grid-cert reveal">
       <!-- ulangi blok .cert; ganti .cert-img dengan gambar sertifikat asli -->
-      <div class="cert">
-        <div class="sertif-IT-Kevin[8].png">SERTIFIKAT</div>
-        <div class="cert-body">
-          <h4>Trainer / Instruktur Bersertifikasi</h4>
-          <div class="iss">LPK Generasi Indonesia Berkelas</div>
-          <div class="cert-foot"><span class="cert-date">2026</span><span class="pill ok">Tanpa Masa Berlaku</span><a href="#" class="verify">Verifikasi</a></div>
-        </div>
-      </div>
-      <div class="cert">
-        <div class="sertif-IT-Kevin[2].png">SERTIFIKAT</div>
-        <div class="cert-body">
-          <h4>Profesional Business Analyst</h4>
-          <div class="iss">International Institute of Business Analysis</div>
-          <div class="cert-foot"><span class="cert-date">2019</span><span class="pill ok">Tanpa Masa Berlaku</span><a href="#" class="verify">Verifikasi</a></div>
-        </div>
-      </div>
-      <div class="cert">
-        <div class="sertif-IT-Kevin[1].png">SERTIFIKAT</div>
-        <div class="cert-body">
-          <h4>Profesional Project Manager</h4>
-          <div class="iss">Project Management Institute</div>
-          <div class="cert-foot"><span class="cert-date">2017</span><span class="pill exp">s.d. 2022</span><a href="#" class="verify">Verifikasi</a></div>
-        </div>
-      </div>
-      <div class="cert">
-        <div class="sertif-IT-Kevin[2].png">SERTIFIKAT</div>
+<div class="cert">
+  <div class="cert-img">
+    <img src="nama-folder/sertif-IT-Kevin-8.png" alt="Sertifikat Trainer LPK">
+  </div>
+  <div class="cert-body">
+    <h4>Trainer / Instruktur Bersertifikasi</h4>
+    <div class="iss">LPK Generasi Indonesia Berkelas</div>
+    <div class="cert-foot">
+      <span class="cert-date">2026</span>
+      <span class="pill ok">Tanpa Masa Berlaku</span>
+      <a href="nama-folder/sertif-IT-Kevin-8.png" target="_blank" class="verify">Verifikasi</a>
+    </div>
+  </div>
+</div>
+<div class="cert">
+  <div class="cert-img">
+    <img src="nama-folder/sertif-IT-Kevin-2.png" alt="Sertifikat IIBA">
+  </div>
+  <div class="cert-body">
+    <h4>Profesional Business Analyst</h4>
+    <div class="iss">International Institute of Business Analysis</div>
+    <div class="cert-foot">
+      <span class="cert-date">2019</span>
+      <span class="pill ok">Tanpa Masa Berlaku</span>
+      <a href="nama-folder/sertif-IT-Kevin-2.png" target="_blank" class="verify">Verifikasi</a>
+    </div>
+  </div>
+</div>
+<div class="cert">
+  <div class="cert-img">
+    <img src="sertif-IT-Kevin-1.png" alt="Sertifikat PMI">
+  </div>
+  <div class="cert-body">
+    <h4>Profesional Project Manager</h4>
+    <div class="iss">Project Management Institute</div>
+    <div class="cert-foot">
+      <span class="cert-date">2017</span>
+      <span class="pill exp">s.d 2022</span>
+      <a href="nama-folder/sertif-IT-Kevin-1.png" target="_blank" class="verify">Verifikasi</a>
+    </div>
+  </div>
+</div> 
+     <div class="sertif-IT-Kevin[2].png">SERTIFIKAT</div>
         <div class="cert-body">
           <h4>IT Project Management</h4>
           <div class="iss">Kementerian Komunikasi dan Informatika RI</div>
@@ -770,6 +787,22 @@ const io = new IntersectionObserver((es) => {
   es.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
 }, {threshold:.12});
 document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+/* Mengatur wadah gambar */
+.cert-img {
+  width: 100%;
+  height: 160px; /* Sesuaikan tinggi yang Anda inginkan */
+  overflow: hidden;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Garis pembatas tipis (opsional) */
+}
+
+/* Mengatur gambar agar tidak peyang (terdistorsi) */
+.cert-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Membuat gambar mengisi penuh kotak tanpa merubah rasio/peyang */
+  object-position: center top; /* Fokus menampilkan bagian atas/tengah gambar */
+}
 </script>
 </body>
 </html>
