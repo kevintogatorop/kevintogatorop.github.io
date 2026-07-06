@@ -318,14 +318,23 @@ section{padding:92px 0;position:relative}
 }
 .cert:hover{border-color:var(--gold);transform:translateY(-4px)}
 .cert-img{
-  height:110px;
+  height:180px;
   background:linear-gradient(135deg,#1b3a5e,#0e2038);
   border-bottom:1px solid var(--line);
   display:flex;align-items:center;justify-content:center;
   font-family:var(--serif);color:var(--dim);font-size:.78rem;letter-spacing:2px;
+  overflow:hidden;
+  position:relative;
 }
-/* Ganti: <div class="cert-img"><img src="cert1.png" alt="..."></div> */
-.cert-img img{width:100%;height:100%;object-fit:cover}
+.cert-img img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center top;
+  display:block;
+  transition:transform .3s ease;
+}
+.cert:hover .cert-img img{transform:scale(1.04)}
 .cert-body{padding:16px 18px 18px}
 .cert-body h4{font-family:var(--serif);font-size:.92rem;margin-bottom:4px;line-height:1.4}
 .cert-body .iss{font-size:.76rem;color:var(--muted);margin-bottom:12px}
@@ -625,72 +634,135 @@ footer .cp{font-size:.74rem;color:var(--dim);margin-top:10px;letter-spacing:.5px
       <h2 class="sec-title">Sertifikasi &amp; kualifikasi</h2>
     </div>
     <div class="grid-cert reveal">
-      <!-- ulangi blok .cert; ganti .cert-img dengan gambar sertifikat asli -->
-<div class="cert">
-  <div class="cert-img">
-    <img src="nama-folder/sertif-IT-Kevin-8.png" alt="Sertifikat Trainer LPK">
-  </div>
-  <div class="cert-body">
-    <h4>Trainer / Instruktur Bersertifikasi</h4>
-    <div class="iss">LPK Generasi Indonesia Berkelas</div>
-    <div class="cert-foot">
-      <span class="cert-date">2026</span>
-      <span class="pill ok">Tanpa Masa Berlaku</span>
-      <a href="nama-folder/sertif-IT-Kevin-8.png" target="_blank" class="verify">Verifikasi</a>
-    </div>
-  </div>
-</div>
-<div class="cert">
-  <div class="cert-img">
-    <img src="nama-folder/sertif-IT-Kevin-2.png" alt="Sertifikat IIBA">
-  </div>
-  <div class="cert-body">
-    <h4>Profesional Business Analyst</h4>
-    <div class="iss">International Institute of Business Analysis</div>
-    <div class="cert-foot">
-      <span class="cert-date">2019</span>
-      <span class="pill ok">Tanpa Masa Berlaku</span>
-      <a href="nama-folder/sertif-IT-Kevin-2.png" target="_blank" class="verify">Verifikasi</a>
-    </div>
-  </div>
-</div>
-<div class="cert">
-  <div class="cert-img">
-    <img src="sertif-IT-Kevin-1.png" alt="Sertifikat PMI">
-  </div>
-  <div class="cert-body">
-    <h4>Profesional Project Manager</h4>
-    <div class="iss">Project Management Institute</div>
-    <div class="cert-foot">
-      <span class="cert-date">2017</span>
-      <span class="pill exp">s.d 2022</span>
-      <a href="nama-folder/sertif-IT-Kevin-1.png" target="_blank" class="verify">Verifikasi</a>
-    </div>
-  </div>
-</div> 
-     <div class="sertif-IT-Kevin[2].png">SERTIFIKAT</div>
+
+      <!-- SERTIFIKAT 1 -->
+      <div class="cert">
+        <div class="cert-img">
+          <img src="sertif-IT-Kevin-8.png" alt="Sertifikat Trainer LPK Generasi Indonesia Berkelas">
+        </div>
+        <div class="cert-body">
+          <h4>Trainer / Instruktur Bersertifikasi</h4>
+          <div class="iss">LPK Generasi Indonesia Berkelas</div>
+          <div class="cert-foot">
+            <span class="cert-date">2026</span>
+            <span class="pill ok">Tanpa Masa Berlaku</span>
+            <a href="sertif-IT-Kevin-8.png" target="_blank" class="verify">Lihat</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- SERTIFIKAT 2 -->
+      <div class="cert">
+        <div class="cert-img">
+          <img src="sertif-IT-Kevin-2.png" alt="Sertifikat IIBA Professional Business Analyst">
+        </div>
+        <div class="cert-body">
+          <h4>Professional Business Analyst</h4>
+          <div class="iss">International Institute of Business Analysis</div>
+          <div class="cert-foot">
+            <span class="cert-date">2019</span>
+            <span class="pill ok">Tanpa Masa Berlaku</span>
+            <a href="sertif-IT-Kevin-2.png" target="_blank" class="verify">Lihat</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- SERTIFIKAT 3 -->
+      <div class="cert">
+        <div class="cert-img">
+          <img src="sertif-IT-Kevin-1.png" alt="Sertifikat PMI Professional Project Manager">
+        </div>
+        <div class="cert-body">
+          <h4>Professional Project Manager</h4>
+          <div class="iss">Project Management Institute</div>
+          <div class="cert-foot">
+            <span class="cert-date">2017</span>
+            <span class="pill exp">s.d. 2022</span>
+            <a href="sertif-IT-Kevin-1.png" target="_blank" class="verify">Lihat</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- SERTIFIKAT 4 -->
+      <div class="cert">
+        <div class="cert-img">
+          <img src="sertif-IT-Kevin-3.png" alt="Sertifikat IT Project Management Kominfo">
+        </div>
         <div class="cert-body">
           <h4>IT Project Management</h4>
           <div class="iss">Kementerian Komunikasi dan Informatika RI</div>
-          <div class="cert-foot"><span class="cert-date">2021</span><span class="pill ok">Tanpa Masa Berlaku</span><a href="#" class="verify">Verifikasi</a></div>
+          <div class="cert-foot">
+            <span class="cert-date">2021</span>
+            <span class="pill ok">Tanpa Masa Berlaku</span>
+            <a href="sertif-IT-Kevin-3.png" target="_blank" class="verify">Lihat</a>
+          </div>
         </div>
       </div>
+
+      <!-- SERTIFIKAT 5 -->
       <div class="cert">
-        <div class="sertif-IT-Kevin[9].png">SERTIFIKAT</div>
+        <div class="cert-img">
+          <img src="sertif-IT-Kevin-4.png" alt="Sertifikat AI Marketing Strategy">
+        </div>
         <div class="cert-body">
           <h4>AI Marketing Strategy</h4>
-          <div class="iss"> Vibecoding.id</div>
-          <div class="cert-foot"><span class="cert-date">2026</span><span class="pill ok">Tanpa Masa Berlaku</span><a href="#" class="verify">Verifikasi</a></div>
+          <div class="iss">Vibecoding.id</div>
+          <div class="cert-foot">
+            <span class="cert-date">2026</span>
+            <span class="pill ok">Tanpa Masa Berlaku</span>
+            <a href="sertif-IT-Kevin-4.png" target="_blank" class="verify">Lihat</a>
+          </div>
         </div>
       </div>
+
+      <!-- SERTIFIKAT 6 -->
       <div class="cert">
-        <div class="sertif-IT-Kevin[8].png">SERTIFIKAT</div>
+        <div class="cert-img">
+          <img src="sertif-IT-Kevin-5.png" alt="Sertifikat Trainer Instruktur BNSP">
+        </div>
         <div class="cert-body">
           <h4>Trainer / Instruktur Bersertifikasi</h4>
           <div class="iss">BNSP</div>
-          <div class="cert-foot"><span class="cert-date">2026</span><span class="pill exp">s.d. 2029</span><a href="#" class="verify">Verifikasi</a></div>
+          <div class="cert-foot">
+            <span class="cert-date">2026</span>
+            <span class="pill exp">s.d. 2029</span>
+            <a href="sertif-IT-Kevin-5.png" target="_blank" class="verify">Lihat</a>
+          </div>
         </div>
       </div>
+
+      <!-- SERTIFIKAT 7 -->
+      <div class="cert">
+        <div class="cert-img">
+          <img src="sertif-IT-Kevin-6.png" alt="Sertifikat 7">
+        </div>
+        <div class="cert-body">
+          <h4>Ganti Nama Sertifikat</h4>
+          <div class="iss">Ganti Penerbit</div>
+          <div class="cert-foot">
+            <span class="cert-date">2025</span>
+            <span class="pill ok">Tanpa Masa Berlaku</span>
+            <a href="sertif-IT-Kevin-6.png" target="_blank" class="verify">Lihat</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- SERTIFIKAT 8 -->
+      <div class="cert">
+        <div class="cert-img">
+          <img src="sertif-IT-Kevin-7.png" alt="Sertifikat 8">
+        </div>
+        <div class="cert-body">
+          <h4>Ganti Nama Sertifikat</h4>
+          <div class="iss">Ganti Penerbit</div>
+          <div class="cert-foot">
+            <span class="cert-date">2025</span>
+            <span class="pill ok">Tanpa Masa Berlaku</span>
+            <a href="sertif-IT-Kevin-7.png" target="_blank" class="verify">Lihat</a>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
@@ -774,7 +846,7 @@ links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => links
 /* ---- email reveal (anti-scraper) — ganti u & d dengan email Anda ---- */
 const emailCard = document.getElementById('emailCard');
 const emailVal = document.getElementById('emailVal');
-const u = 'kevin.togatorop', d = '@gmail.com';
+const u = 'kevin.togatorop', d = 'gmail.com';
 let shown = false;
 emailCard.addEventListener('click', () => {
   const addr = u + '@' + d;
@@ -788,21 +860,7 @@ const io = new IntersectionObserver((es) => {
 }, {threshold:.12});
 document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
-/* Mengatur wadah gambar */
-.cert-img {
-  width: 100%;
-  height: 160px; /* Sesuaikan tinggi yang Anda inginkan */
-  overflow: hidden;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Garis pembatas tipis (opsional) */
-}
 
-/* Mengatur gambar agar tidak peyang (terdistorsi) */
-.cert-img img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover; /* Membuat gambar mengisi penuh kotak tanpa merubah rasio/peyang */
-  object-position: center top; /* Fokus menampilkan bagian atas/tengah gambar */
-}
 </script>
 </body>
 </html>
