@@ -29,11 +29,11 @@
   --paper:     #f7f5f0;   /* section terang     */
   --paper-2:   #efece4;
   --ink:       #1c2530;   /* teks di atas paper */
-  --ink-mut:   #5a6675;
+  --ink-mut:   #4c5765;
 
   --text:      #e9ecf1;
   --muted:     #a7b4c6;
-  --dim:       #6e7f96;
+  --dim:       #8ea0b6;   /* dinaikkan agar terbaca */
 
   --gold:      #c8a35a;
   --gold-hi:   #dcbb75;
@@ -83,6 +83,7 @@ section{padding:92px 0;position:relative}
 
 /* section terang (paper) */
 .bg-paper{background:var(--paper);color:var(--ink)}
+.bg-paper.bg-paper-2{background:var(--paper-2)}
 .bg-paper .sec-title{color:var(--ink)}
 .bg-paper .muted-p{color:var(--ink-mut)}
 
@@ -283,64 +284,110 @@ section{padding:92px 0;position:relative}
 /* ============================================================
    6b. MASALAH — 5 frustrasi nyata (navy, ledger style)
    ============================================================ */
-.prob-intro{color:var(--muted);font-size:.95rem;max-width:64ch;margin:-18px 0 44px}
+.prob-intro{color:var(--muted);font-size:.95rem;max-width:64ch;margin:-18px 0 46px;line-height:1.75}
 .prob-list{display:flex;flex-direction:column}
 .prob{
-  display:grid;grid-template-columns:150px 1fr 300px;gap:28px;
-  padding:30px 0;border-top:1px solid var(--line);
-  align-items:start;transition:.25s;
+  display:grid;grid-template-columns:56px minmax(0,1fr) minmax(0,320px);gap:0 32px;
+  padding:34px 0;border-top:1px solid var(--line);
+  align-items:start;transition:background .25s;
 }
-.prob:last-child{border-bottom:1px solid var(--line)}
-.prob:hover{background:rgba(255,255,255,.02)}
-.prob-num{
-  font-family:var(--serif);font-size:2.3rem;line-height:1;color:var(--gold);
+.prob:last-of-type{border-bottom:1px solid var(--line)}
+.prob:hover{background:rgba(255,255,255,.025)}
+
+.prob-no{
+  font-family:var(--serif);font-size:1.6rem;line-height:1.1;color:var(--gold);
+  padding-top:2px;
 }
-.prob-num small{
-  display:block;font-family:var(--sans);font-size:.62rem;font-weight:600;
-  letter-spacing:1.8px;text-transform:uppercase;color:var(--dim);margin-top:8px;line-height:1.5;
+.prob-body h3{font-family:var(--serif);font-size:1.16rem;margin-bottom:10px;line-height:1.4;color:var(--text)}
+.prob-body p{color:var(--muted);font-size:.9rem;line-height:1.75;max-width:58ch}
+
+.prob-fact{
+  margin-top:18px;background:rgba(200,163,90,.09);
+  border-left:2px solid var(--gold);padding:12px 16px;max-width:58ch;
 }
-.prob-body h3{font-family:var(--serif);font-size:1.08rem;margin-bottom:8px;line-height:1.4}
-.prob-body p{color:var(--muted);font-size:.87rem;line-height:1.65;max-width:56ch}
+.prob-fact .n{
+  font-family:var(--serif);color:var(--gold-hi);font-size:1.05rem;font-weight:700;
+  margin-right:8px;
+}
+.prob-fact .t{color:var(--text);font-size:.85rem;line-height:1.6}
+.prob-fact .src{
+  display:block;margin-top:6px;color:var(--muted);font-size:.72rem;letter-spacing:.3px;
+}
+
 .prob-fix{
-  border-left:2px solid var(--gold);padding:2px 0 2px 16px;
+  background:var(--panel);border:1px solid var(--line);
+  border-top:2px solid var(--gold);
+  padding:20px 20px;align-self:start;
 }
-.prob-fix .k{font-size:.62rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:6px}
-.prob-fix .v{font-size:.85rem;color:var(--text);line-height:1.55}
-.prob-src{color:var(--dim);font-size:.72rem;margin-top:28px;line-height:1.7;max-width:72ch}
-@media(max-width:900px){.prob{grid-template-columns:1fr;gap:14px}.prob-fix{margin-top:4px}}
+.prob-fix .k{
+  font-size:.63rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;
+  color:var(--gold);margin-bottom:9px;
+}
+.prob-fix .v{font-size:.87rem;color:var(--text);line-height:1.65}
+.prob-fix .v b{color:var(--gold-hi);font-weight:600;display:block;margin-bottom:4px;font-family:var(--serif)}
+
+.prob-src{
+  color:var(--muted);font-size:.76rem;margin-top:34px;line-height:1.8;max-width:76ch;
+  padding-top:20px;border-top:1px solid var(--line);
+}
+@media(max-width:960px){
+  .prob{grid-template-columns:44px 1fr;gap:0 20px}
+  .prob-fix{grid-column:2;margin-top:20px}
+}
+@media(max-width:560px){
+  .prob{grid-template-columns:1fr;gap:14px}
+  .prob-no{font-size:1.3rem}
+  .prob-fix{grid-column:1}
+}
 
 /* ============================================================
    6c. LAYANAN BERLANGGANAN (paper)
    ============================================================ */
-.sub-intro{color:var(--ink-mut);font-size:.95rem;max-width:66ch;margin:-18px 0 40px}
+.sub-intro{color:var(--ink-mut);font-size:.95rem;max-width:68ch;margin:-18px 0 42px;line-height:1.75}
 .grid-sub{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
 .sub{
-  background:#fff;border:1px solid #e3ddd0;padding:28px 26px;
+  background:#fff;border:1px solid #ddd6c6;padding:30px 28px;
   display:flex;flex-direction:column;transition:.25s;position:relative;
   box-shadow:0 6px 18px -14px rgba(28,37,48,.18);
 }
 .sub:hover{border-color:var(--gold);transform:translateY(-4px);box-shadow:0 14px 30px -16px rgba(28,37,48,.3)}
-.sub-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px;flex-wrap:wrap}
+.sub.wide{grid-column:1 / -1}
+
+.sub-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:16px;flex-wrap:wrap}
 .sub-solves{
-  font-size:.64rem;font-weight:600;letter-spacing:1.6px;text-transform:uppercase;
-  color:#8a6d33;background:var(--gold-soft);padding:4px 10px;
+  font-size:.64rem;font-weight:700;letter-spacing:1.4px;text-transform:uppercase;
+  color:#6f5522;background:var(--gold-soft);padding:5px 11px;
 }
 .sub-model{
-  font-family:var(--mono);font-size:.68rem;color:var(--ink-mut);
-  border:1px solid #e3ddd0;padding:3px 9px;
+  font-family:var(--sans);font-size:.68rem;font-weight:600;letter-spacing:.6px;
+  color:#4c5765;border:1px solid #ddd6c6;padding:4px 10px;background:var(--paper);
 }
-.sub h3{font-family:var(--serif);font-size:1.1rem;color:var(--ink);margin-bottom:9px;line-height:1.4}
-.sub p{color:var(--ink-mut);font-size:.87rem;line-height:1.65;flex:1}
-.sub-proof{
-  margin-top:18px;padding-top:14px;border-top:1px dashed #ddd6c6;
+.sub h3{font-family:var(--serif);font-size:1.16rem;color:var(--ink);margin-bottom:4px;line-height:1.35}
+.sub .en{
+  font-size:.7rem;letter-spacing:1.2px;text-transform:uppercase;color:#6b655c;
+  margin-bottom:12px;font-weight:600;
 }
+.sub p{color:var(--ink-mut);font-size:.89rem;line-height:1.75;flex:1}
+
+.sub-proof{margin-top:20px;padding-top:16px;border-top:1px dashed #ddd6c6}
 .sub-proof .k{
-  font-size:.62rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;
-  color:#8a6d33;margin-bottom:5px;
+  font-size:.63rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;
+  color:#6f5522;margin-bottom:6px;
 }
-.sub-proof .v{font-size:.8rem;color:var(--ink);line-height:1.6}
-.sub-proof .v em{color:var(--ink-mut);font-style:normal;font-size:.74rem}
-@media(max-width:820px){.grid-sub{grid-template-columns:1fr}}
+.sub-proof .v{font-size:.83rem;color:var(--ink);line-height:1.7}
+.sub-proof .v em{color:#6b7482;font-style:italic;font-size:.78rem}
+
+.sub-div{
+  grid-column:1 / -1;display:flex;align-items:center;gap:16px;
+  margin:24px 0 4px;
+}
+.sub-div span{
+  font-size:.7rem;font-weight:700;letter-spacing:2.4px;text-transform:uppercase;color:#8a6d33;
+  white-space:nowrap;
+}
+.sub-div::after{content:"";flex:1;height:1px;background:#ddd6c6}
+
+@media(max-width:820px){.grid-sub{grid-template-columns:1fr}.sub.wide{grid-column:auto}}
 
 /* ============================================================
    7. ENGAGEMENTS / PROJECTS (paper)
@@ -523,7 +570,7 @@ footer .cp{font-size:.74rem;color:var(--dim);margin-top:10px;letter-spacing:.5px
       <a href="#about">Tentang</a>
       <a href="#masalah">Masalah</a>
       <a href="#layanan">Layanan</a>
-      <a href="#projects">Bukti Kerja</a>
+      <a href="#projects">Rekam Jejak</a>
       <a href="#certs">Kredensial</a>
       <a href="#contact">Kontak</a>
     </div>
@@ -541,7 +588,7 @@ footer .cp{font-size:.74rem;color:var(--dim);margin-top:10px;letter-spacing:.5px
     <div>
       <div class="hero-kicker">IT Strategy, IT Investment &amp; Digital Government Advisory</div>
       <h1 class="reveal in">Memastikan investasi teknologi Anda <em>terbukti bernilai</em> — sebelum anggaran dikeluarkan.</h1>
-      <p class="hero-sub">Hanya 48% inisiatif digital yang mencapai target bisnisnya (Gartner, 2025) — bukan karena teknologinya salah, tetapi karena nilai bisnisnya tidak pernah dikuantifikasi. Saya membantu korporasi dan pemerintah menutup celah itu: valuasi investasi TI, analisis pra-pengadaan, tata kelola, dan arsitektur enterprise.</p>
+      <p class="hero-sub">Hanya 48% proyek digital yang benar-benar mencapai target bisnisnya (Gartner, 2025). Penyebabnya bukan teknologi yang salah, tetapi karena tidak ada yang menghitung lebih dulu berapa nilai bisnis yang akan dihasilkan. Saya membantu perusahaan dan instansi pemerintah menutup celah itu — sebelum anggaran dikeluarkan.</p>
       <div class="hero-status"><span class="dot-live"></span> Menerima engagement advisory &amp; pendampingan strategis</div>
       <div class="hero-btns">
         <a href="#layanan" class="btn btn-primary">Lihat Layanan Berlangganan</a>
@@ -571,7 +618,7 @@ footer .cp{font-size:.74rem;color:var(--dim);margin-top:10px;letter-spacing:.5px
         <h2 class="sec-title">Strategi bisnis hanya berjalan jika strategi TI-nya bisa dipertanggungjawabkan.</h2>
         <p class="lead">Saya membantu organisasi menjawab satu pertanyaan yang sering diabaikan sebelum pengadaan: <em>apakah investasi TI ini benar-benar layak — dan berapa nilai bisnisnya dalam angka?</em> Praktik saya berdiri di tiga pilar:</p>
         <ul class="about-points">
-          <li><b>Valuasi investasi TI &amp; analisis pra-pengadaan.</b> Kuantifikasi manfaat bisnis dari solusi TI menggunakan metodologi Information Economics dan tabel nilai bisnis SI/TI generik — sehingga keputusan pengadaan berbasis ROI yang terdiskonto risiko, bukan asumsi.</li>
+          <li><b>Valuasi investasi TI &amp; analisis pra-pengadaan.</b> Menghitung manfaat bisnis dari sebuah solusi teknologi dengan metode Information Economics dan tabel manfaat bisnis sistem informasi — sehingga keputusan pengadaan berdiri di atas angka yang sudah memperhitungkan risiko, bukan di atas asumsi.</li>
           <li><b>Strategi transformasi digital korporasi.</b> Menjembatani rencana strategis perusahaan dengan arsitektur enterprise dan portofolio inisiatif digital yang terprioritisasi, terukur, dan dapat dieksekusi bersama vendor maupun principal.</li>
           <li><b>Pemerintahan digital (SPBE).</b> Pendampingan pimpinan kementerian, pemerintah provinsi, dan kabupaten/kota dalam merancang tata kelola, peta jalan, dan justifikasi anggaran untuk penerapan pemerintahan berbasis elektronik.</li>
         </ul>
@@ -625,59 +672,94 @@ footer .cp{font-size:.74rem;color:var(--dim);margin-top:10px;letter-spacing:.5px
   <div class="wrap">
     <div class="reveal">
       <div class="sec-eyebrow">Diagnosis</div>
-      <h2 class="sec-title">Lima permasalahan yang merugikan di perusahaan / organisasi Anda </h2>
-      <p class="prob-intro">Riset lima tahun terakhir (Gartner, McKinsey/BCG, MuleSoft, State of the CIO) menunjukkan pola yang sama lintas industri: masalahnya bukan kekurangan teknologi, melainkan tidak adanya mekanisme yang menghubungkan investasi TI dengan nilai bisnis yang terukur. Kelima masalah ini kronis — dan karena kronis, penanganannya pun harus berkelanjutan.</p>
+      <h2 class="sec-title">Lima masalah yang terus berulang — bahkan di organisasi yang sudah punya divisi TI.</h2>
+      <p class="prob-intro">Perusahaan sudah membeli teknologinya. Timnya sudah ada. Anggarannya sudah keluar. Tapi hasilnya sering tidak terasa di kinerja bisnis. Riset lima tahun terakhir menunjukkan penyebabnya bukan teknologi yang salah, melainkan tidak adanya cara untuk membuktikan bahwa uang yang keluar benar-benar kembali dalam bentuk manfaat. Lima masalah di bawah bersifat menahun — dan karena menahun, penanganannya pun harus berjalan terus-menerus, bukan sekali selesai.</p>
     </div>
 
     <div class="prob-list reveal">
 
       <div class="prob">
-        <div class="prob-num">48%<small>Inisiatif digital yang mencapai target bisnis — Gartner CIO Survey 2025</small></div>
+        <div class="prob-no">01</div>
         <div class="prob-body">
-          <h3>Strategi TI dan strategi bisnis berjalan di rel berbeda</h3>
-          <p>Divisi TI bekerja sebagai penerima permintaan, bukan co-owner strategi. Tidak ada mekanisme formal yang menerjemahkan rencana strategis menjadi prioritas investasi TI yang terukur — sehingga separuh lebih inisiatif digital gagal mencapai sasaran bisnisnya.</p>
+          <h3>Rencana bisnis dan rencana teknologi berjalan sendiri-sendiri</h3>
+          <p>Divisi TI bekerja menunggu permintaan datang, bukan ikut merancang arah perusahaan. Tidak ada cara baku untuk menerjemahkan target bisnis menjadi daftar prioritas belanja teknologi. Akibatnya, sistem yang dibeli sering tidak menjawab masalah yang paling menentukan.</p>
+          <div class="prob-fact">
+            <span class="n">48%</span><span class="t">Hanya sebagian kecil inisiatif digital yang benar-benar mencapai target bisnisnya.</span>
+            <span class="src">Gartner CIO &amp; Technology Executive Survey, 2025</span>
+          </div>
         </div>
-        <div class="prob-fix"><div class="k">Layanan Kami</div><div class="v">IT Strategy Alignment Audit — skoring portofolio investasi TI terhadap sasaran bisnis, setiap kuartal.</div></div>
+        <div class="prob-fix">
+          <div class="k">Cara saya membantu</div>
+          <div class="v"><b>Audit Keselarasan Strategi TI</b>Setiap tiga bulan, seluruh proyek dan belanja teknologi Anda dinilai: mana yang benar-benar mendukung target perusahaan, mana yang tidak.</div>
+        </div>
       </div>
 
       <div class="prob">
-        <div class="prob-num">Rp&nbsp;0<small>Nilai yang dihitung untuk manfaat "intangible" dalam kebanyakan business case TI</small></div>
+        <div class="prob-no">02</div>
         <div class="prob-body">
-          <h3>Business case lemah: proyek strategis kalah oleh proyek kecil ber-ROI instan</h3>
-          <p>Ketika manfaat strategis tidak bisa dikuantifikasi, komite anggaran memilih proyek kecil yang ROI-nya mudah dihitung — dan proyek yang justru menentukan daya saing perusahaan tidak pernah didanai. Ini kegagalan metode, bukan kegagalan ide.</p>
+          <h3>Proposal proyek besar kalah oleh proyek kecil yang angkanya mudah dihitung</h3>
+          <p>Sebagian manfaat teknologi berbentuk uang yang jelas — penghematan biaya, tambahan pendapatan. Sebagian lagi berbentuk manfaat tak berwujud: keputusan lebih cepat, risiko lebih kecil, layanan lebih baik. Manfaat jenis kedua ini hampir tidak pernah dihitung, sehingga proyek yang justru menentukan daya saing perusahaan tidak pernah disetujui.</p>
+          <div class="prob-fact">
+            <span class="t">Ketika manfaat tak berwujud tidak dinilai, proyek yang strategis tidak didanai — sementara proyek kecil dengan imbal hasil instan memenangkan anggaran, dan arah strategis perusahaan pelan-pelan melenceng.</span>
+            <span class="src">CIO.com, ulasan praktik penyusunan business case</span>
+          </div>
         </div>
-        <div class="prob-fix"><div class="k">Layanan Kami</div><div class="v">Investment Justification Retainer — setiap proposal TI besar dikuantifikasi dengan Information Economics + 73 sub-kategori nilai bisnis sebelum naik ke direksi.</div></div>
+        <div class="prob-fix">
+          <div class="k">Cara saya membantu</div>
+          <div class="v"><b>Pendampingan Justifikasi Investasi TI</b>Setiap proposal belanja teknologi bernilai besar saya hitung nilainya — manfaat berwujud maupun tak berwujud — sebelum diajukan ke direksi.</div>
+        </div>
       </div>
 
       <div class="prob">
-        <div class="prob-num">70%<small>Transformasi digital yang gagal mencapai tujuannya — McKinsey &amp; BCG</small></div>
+        <div class="prob-no">03</div>
         <div class="prob-body">
-          <h3>Transformasi berjalan, manfaat tidak pernah diaudit</h3>
-          <p>Mayoritas kegagalan bukan soal teknologi, melainkan roadmap yang tidak terikat pada nilai bisnis terukur — dan tidak ada yang memeriksa apakah manfaat yang dijanjikan di business case benar-benar terealisasi setelah go-live.</p>
+          <h3>Sistem sudah dipakai, tapi tidak ada yang memeriksa apakah manfaatnya benar terjadi</h3>
+          <p>Business case disusun rapi di awal proyek, lalu dilupakan setelah sistem berjalan. Tidak ada yang kembali bertanya: apakah penghematan yang dijanjikan benar terjadi? Apakah waktu proses benar-benar turun? Tanpa pemeriksaan ini, perusahaan mengulang kesalahan yang sama di proyek berikutnya.</p>
+          <div class="prob-fact">
+            <span class="n">70%</span><span class="t">Transformasi digital gagal mencapai tujuan yang ditetapkan — mayoritas bukan karena teknologinya, melainkan karena manfaatnya tidak pernah dikelola dan diawasi.</span>
+            <span class="src">Riset McKinsey &amp; Boston Consulting Group, dikutip konsisten 2018–2026</span>
+          </div>
         </div>
-        <div class="prob-fix"><div class="k">Layanan Kami</div><div class="v">Benefits Realization Tracking — audit realisasi manfaat berkala pasca-implementasi, bukan hanya kajian di awal proyek.</div></div>
+        <div class="prob-fix">
+          <div class="k">Cara saya membantu</div>
+          <div class="v"><b>Audit Realisasi Manfaat</b>Setelah sistem berjalan, saya periksa secara berkala apakah manfaat yang dijanjikan benar-benar terwujud — lengkap dengan rekomendasi koreksi.</div>
+        </div>
       </div>
 
       <div class="prob">
-        <div class="prob-num">&gt;50%<small>Pemimpin TI menyatakan kekurangan staf menyita waktu dari kerja strategis — State of the CIO 2025</small></div>
+        <div class="prob-no">04</div>
         <div class="prob-body">
-          <h3>Tim TI internal tenggelam dalam operasional harian</h3>
-          <p>Tim terbaik pun tidak punya kapasitas untuk analisis kebutuhan mendalam, kajian pra-pengadaan yang rigor, atau perencanaan arsitektur — karena setiap hari habis memadamkan kebakaran. Menambah pegawai tetap bukan selalu jawabannya.</p>
+          <h3>Tim TI internal habis waktunya untuk urusan harian</h3>
+          <p>Tim terbaik sekalipun tidak punya sisa waktu untuk memetakan kebutuhan secara mendalam, menyiapkan kajian sebelum pengadaan, atau merancang arsitektur jangka panjang — karena setiap hari sudah habis menangani gangguan operasional. Menambah pegawai tetap tidak selalu menjawab kebutuhan yang sifatnya musiman ini.</p>
+          <div class="prob-fact">
+            <span class="n">&gt;50%</span><span class="t">Pemimpin TI menyatakan kekurangan staf dan keahlian menyita waktu mereka dari pekerjaan strategis.</span>
+            <span class="src">Foundry, State of the CIO 2025</span>
+          </div>
         </div>
-        <div class="prob-fix"><div class="k">Layanan Kami</div><div class="v">Fractional Strategy Capacity — kapasitas strategis tambahan yang disewa per kuartal: needs analysis, kajian pra-pengadaan, arsitektur.</div></div>
+        <div class="prob-fix">
+          <div class="k">Cara saya membantu</div>
+          <div class="v"><b>Tim Strategi TI Paruh Waktu</b>Kapasitas tambahan yang Anda sewa per kuartal untuk kajian kebutuhan, kajian pra-pengadaan, dan perancangan arsitektur — dikerjakan bersama tim internal Anda.</div>
+        </div>
       </div>
 
       <div class="prob">
-        <div class="prob-num">87%<small>Pemimpin bisnis &amp; TI khawatir governance memperlambat inovasi — MuleSoft</small></div>
+        <div class="prob-no">05</div>
         <div class="prob-body">
-          <h3>Tata kelola dan kepatuhan jadi rem, bukan rambu</h3>
-          <p>Tanpa kerangka governance yang independen dan berbasis nilai, kepatuhan (termasuk SPBE di sektor pemerintah) diperlakukan sebagai beban administratif — padahal seharusnya menjadi justifikasi anggaran dan pelindung keputusan pimpinan.</p>
+          <h3>Aturan dan tata kelola dirasa menghambat, bukan melindungi</h3>
+          <p>Tanpa kerangka tata kelola yang jelas dan berbasis nilai, kepatuhan aturan — termasuk SPBE di instansi pemerintah — diperlakukan sebagai beban administratif. Padahal jika disusun dengan benar, dokumen tata kelola justru menjadi alat pembenaran anggaran yang paling kuat dan pelindung bagi pimpinan yang mengambil keputusan.</p>
+          <div class="prob-fact">
+            <span class="n">87%</span><span class="t">Pemimpin bisnis dan TI khawatir bahwa keamanan dan tata kelola justru memperlambat laju inovasi.</span>
+            <span class="src">MuleSoft, IT &amp; Business Alignment Barometer</span>
+          </div>
         </div>
-        <div class="prob-fix"><div class="k">Layanan Kami</div><div class="v">Governance &amp; SPBE Advisory — tata kelola TIK dan arsitektur SPBE yang sekaligus berfungsi sebagai justifikasi anggaran.</div></div>
+        <div class="prob-fix">
+          <div class="k">Cara saya membantu</div>
+          <div class="v"><b>Pendampingan Tata Kelola TI &amp; SPBE</b>Tata kelola dan arsitektur SPBE yang disusun sekaligus sebagai dasar pembenaran anggaran, bukan sekadar dokumen kepatuhan.</div>
+        </div>
       </div>
 
     </div>
-    <div class="prob-src reveal">Sumber angka: Gartner CIO &amp; Technology Executive Survey 2025 · McKinsey &amp; BCG (riset transformasi digital, dikutip konsisten 2018–2026) · Foundry State of the CIO 2025 · MuleSoft IT &amp; Business Alignment Barometer. Angka disajikan sebagai konteks industri, bukan klaim hasil klien.</div>
+    <div class="prob-src reveal"><b>Catatan sumber.</b> Angka di atas berasal dari Gartner CIO &amp; Technology Executive Survey 2025, riset McKinsey dan Boston Consulting Group tentang transformasi digital, Foundry State of the CIO 2025, dan MuleSoft IT &amp; Business Alignment Barometer. Angka disajikan sebagai gambaran kondisi industri secara umum — bukan klaim atas hasil klien saya.</div>
   </div>
 </section>
 
@@ -685,60 +767,69 @@ footer .cp{font-size:.74rem;color:var(--dim);margin-top:10px;letter-spacing:.5px
 <section id="layanan" class="bg-paper">
   <div class="wrap">
     <div class="reveal">
-      <div class="sec-eyebrow">Layanan Berlangganan</div>
-      <h2 class="sec-title">Masalah kronis butuh solusi berkelanjutan — bukan proyek sekali jalan.</h2>
-      <p class="sub-intro">Setiap layanan di bawah dirancang sebagai <b>retainer</b> atau <b>program berkala</b> yang menjawab satu frustrasi spesifik di atas — dan setiap layanan dilengkapi bukti kerja nyata yang bisa Anda periksa sebelum berkomitmen.</p>
+      <div class="sec-eyebrow">Layanan</div>
+      <h2 class="sec-title">Masalah yang menahun butuh pendampingan yang berjalan — bukan proyek sekali jalan.</h2>
+      <p class="sub-intro">Setiap layanan di bawah ini menjawab satu masalah spesifik yang baru saja Anda baca, dan berjalan dalam bentuk <b>langganan berkala</b> — bulanan, kuartalan, atau program bertahap. Setiap layanan disertai <b>bukti kerja nyata</b> yang bisa Anda periksa terlebih dahulu, sebelum Anda memutuskan bekerja sama.</p>
     </div>
 
     <div class="grid-sub reveal">
 
       <div class="sub">
-        <div class="sub-head"><span class="sub-solves">Menjawab Frustrasi 1</span><span class="sub-model">RETAINER KUARTALAN</span></div>
-        <h3>IT Strategy Alignment Audit</h3>
-        <p>Skoring seluruh portofolio investasi TI terhadap sasaran rencana strategis menggunakan metodologi Information Economics (Parker) — menghasilkan peta prioritas yang bisa dipertanggungjawabkan di hadapan direksi setiap kuartal.</p>
-        <div class="sub-proof"><div class="k">Bukti Kerja</div><div class="v">Kerangka MITI 7 fase yang saya kembangkan &amp; ajarkan — diadaptasi dari Information Economics dan divalidasi dengan 73 sub-kategori nilai bisnis SI/TI dari 60 studi kasus Indonesia. <em>Metodologi lengkap tersedia untuk direview.</em></div></div>
+        <div class="sub-head"><span class="sub-solves">Menjawab masalah 01</span><span class="sub-model">Langganan · per kuartal</span></div>
+        <h3>Audit Keselarasan Strategi TI</h3>
+        <div class="en">IT Strategy Alignment Audit</div>
+        <p>Setiap tiga bulan, seluruh proyek dan belanja teknologi Anda dinilai satu per satu terhadap target bisnis perusahaan. Hasilnya berupa peta prioritas: mana yang harus dipercepat, mana yang ditunda, dan mana yang sebaiknya dihentikan — dengan alasan yang bisa dipertanggungjawabkan di hadapan direksi.</p>
+        <div class="sub-proof"><div class="k">Bukti kerja</div><div class="v">Kerangka MITI 7 fase yang saya susun dan ajarkan — dikembangkan dari metode Information Economics (Parker) dan divalidasi dengan 73 sub-kategori manfaat bisnis dari 60 studi kasus di Indonesia. <em>Metodologi lengkapnya tersedia untuk Anda periksa.</em></div></div>
       </div>
 
       <div class="sub">
-        <div class="sub-head"><span class="sub-solves">Menjawab Frustrasi 2</span><span class="sub-model">RETAINER BULANAN</span></div>
-        <h3>Investment Justification Retainer</h3>
-        <p>Setiap proposal investasi TI bernilai besar direview dan dikuantifikasi — manfaat tangible dan intangible, ROI terdiskonto risiko — sebelum diajukan ke komite anggaran. Proposal Anda naik dengan angka yang bisa dipertahankan.</p>
-        <div class="sub-proof"><div class="k">Bukti Kerja</div><div class="v">Kajian kelayakan pengadaan IT Solutions untuk Rumah Sakit Swasta dan Klinik, Kajian kelayakan pengadaan IT Solutions untuk BUMN, Kajian kelayakan pengadaan infrastruktur server untuk Diskominfo tingkat kabupaten — analisis lengkap ROI terdiskonto risiko dengan data terverifikasi 2020–2026. <em>Dokumen kajian dapat dipresentasikan dalam pertemuan.</em></div></div>
+        <div class="sub-head"><span class="sub-solves">Menjawab masalah 02</span><span class="sub-model">Langganan · per bulan</span></div>
+        <h3>Pendampingan Justifikasi Investasi TI</h3>
+        <div class="en">Investment Justification Retainer</div>
+        <p>Sebelum proposal belanja teknologi Anda naik ke komite anggaran, saya hitung nilainya lebih dulu: manfaat yang berupa uang, manfaat tak berwujud, dan risiko yang menyertainya. Proposal Anda maju dengan angka yang bisa dipertahankan ketika ditanya balik.</p>
+        <div class="sub-proof"><div class="k">Bukti kerja</div><div class="v">Kajian kelayakan pengadaan infrastruktur server untuk Dinas Komunikasi dan Informatika tingkat kabupaten — perhitungan lengkap imbal hasil investasi setelah memperhitungkan risiko, memakai data terverifikasi 2020–2026. <em>Dokumen kajian dapat saya presentasikan dalam pertemuan.</em></div></div>
       </div>
 
       <div class="sub">
-        <div class="sub-head"><span class="sub-solves">Menjawab Frustrasi 3</span><span class="sub-model">PROGRAM 6–12 BULAN</span></div>
-        <h3>Benefits Realization Tracking</h3>
-        <p>Audit berkala pasca-implementasi: apakah manfaat yang dijanjikan di business case benar-benar terealisasi? Temuan menjadi bahan koreksi arah — dan pembelajaran untuk siklus investasi berikutnya.</p>
-        <div class="sub-proof"><div class="k">Bukti Kerja</div><div class="v">Kajian advisory implementasi SIMRS pada RSUD, Kajian advisory implementasi IT Solutions pada BUMN  — pemetaan nilai bisnis, risiko implementasi, dan indikator realisasi manfaat per fase. <em>Ringkasan metodologi tersedia untuk direview.</em></div></div>
+        <div class="sub-head"><span class="sub-solves">Menjawab masalah 03</span><span class="sub-model">Program · 6–12 bulan</span></div>
+        <h3>Audit Realisasi Manfaat</h3>
+        <div class="en">Benefits Realization Tracking</div>
+        <p>Enam bulan setelah sistem berjalan, apakah penghematan yang dijanjikan benar terjadi? Apakah waktu proses benar-benar turun? Saya periksa secara berkala, susun temuannya, dan berikan rekomendasi koreksi — sekaligus menjadi bahan pembelajaran untuk investasi berikutnya.</p>
+        <div class="sub-proof"><div class="k">Bukti kerja</div><div class="v">Kajian advisory penerapan Sistem Informasi Manajemen Rumah Sakit (SIMRS) pada RSUD — pemetaan manfaat bisnis, risiko implementasi, dan indikator keberhasilan per tahap. <em>Ringkasan metodologi tersedia untuk Anda periksa.</em></div></div>
       </div>
 
       <div class="sub">
-        <div class="sub-head"><span class="sub-solves">Menjawab Frustrasi 4</span><span class="sub-model">RETAINER KUARTALAN</span></div>
-        <h3>Fractional Strategy Capacity</h3>
-        <p>Kapasitas strategis tambahan untuk tim TI Anda tanpa menambah pegawai tetap: analisis kebutuhan, kajian pra-pengadaan, penyusunan arsitektur — dikerjakan bersama tim internal agar pengetahuannya menetap di organisasi.</p>
-        <div class="sub-proof"><div class="k">Bukti Kerja</div><div class="v">Kemitraan advisory dengan vendor solusi digital B2B: membekali funnel pre-sales mereka dengan analisis kebutuhan dan kuantifikasi nilai bisnis untuk mempercepat siklus penjualan enterprise.</div></div>
+        <div class="sub-head"><span class="sub-solves">Menjawab masalah 04</span><span class="sub-model">Langganan · per kuartal</span></div>
+        <h3>Tim Strategi TI Paruh Waktu</h3>
+        <div class="en">Fractional Strategy Capacity</div>
+        <p>Anda mendapat kapasitas strategis tambahan tanpa perlu merekrut pegawai tetap: pemetaan kebutuhan, kajian sebelum pengadaan, dan perancangan arsitektur. Semua dikerjakan bersama tim internal Anda, sehingga pengetahuannya tetap tinggal di organisasi setelah pendampingan selesai.</p>
+        <div class="sub-proof"><div class="k">Bukti kerja</div><div class="v">Kemitraan advisory dengan penyedia solusi digital B2B — membekali tim penjualan mereka dengan kajian kebutuhan dan perhitungan manfaat bisnis, sehingga proses penjualan ke klien enterprise berjalan lebih cepat.</div></div>
+      </div>
+
+      <div class="sub wide">
+        <div class="sub-head"><span class="sub-solves">Menjawab masalah 05</span><span class="sub-model">Pendampingan berkala · sektor pemerintah</span></div>
+        <h3>Pendampingan Tata Kelola TI &amp; SPBE</h3>
+        <div class="en">Governance &amp; SPBE Advisory</div>
+        <p>Untuk kementerian, pemerintah provinsi, dan kabupaten/kota: perancangan tata kelola teknologi informasi dan arsitektur Sistem Pemerintahan Berbasis Elektronik (SPBE). Disusun sedemikian rupa sehingga dokumen kepatuhan yang Anda hasilkan sekaligus berfungsi sebagai dasar pembenaran anggaran — berbasis manfaat terukur bagi layanan publik, bukan sekadar memenuhi kewajiban administratif.</p>
+        <div class="sub-proof"><div class="k">Bukti kerja</div><div class="v">Kajian arsitektur dan pembenaran belanja teknologi untuk pemerintah kabupaten, disusun berdasarkan instrumen regulasi SPBE dan tabel manfaat bisnis sistem informasi. <em>Detail dapat didiskusikan dalam pertemuan langsung.</em></div></div>
+      </div>
+
+      <div class="sub-div"><span>Peningkatan kapasitas tim Anda</span></div>
+
+      <div class="sub">
+        <div class="sub-head"><span class="sub-solves">Pelatihan bersertifikasi</span><span class="sub-model">Kelas publik &amp; in-house</span></div>
+        <h3>Kelas Manajemen Investasi Teknologi Informasi</h3>
+        <div class="en">Certified IT Trainer · MITI</div>
+        <p>Program pelatihan terstruktur untuk tim strategi, PMO, dan pengelola teknologi informasi Anda: cara menilai kelayakan investasi TI, menyusun business case yang tidak mudah dipatahkan, dan menerapkan tata kelola. Setelah kelas selesai, tim Anda bisa mengerjakannya sendiri.</p>
+        <div class="sub-proof"><div class="k">Bukti kerja</div><div class="v">Silabus Kelas Manajemen Investasi TI (MITI) — program berjalan sejak Februari 2026, materi berbasis Information Economics dan studi kasus Indonesia. Dibawakan oleh trainer bersertifikasi BNSP (berlaku sampai 2029) dan Kominfo RI.</div></div>
       </div>
 
       <div class="sub">
-        <div class="sub-head"><span class="sub-solves">Menjawab Frustrasi 5</span><span class="sub-model">PENDAMPINGAN BERKALA</span></div>
-        <h3>Governance &amp; SPBE Advisory</h3>
-        <p>Perancangan tata kelola TIK dan arsitektur SPBE bagi kementerian dan pemerintah daerah — disusun sehingga kepatuhan regulasi sekaligus menjadi justifikasi anggaran berbasis manfaat terukur bagi layanan publik.</p>
-        <div class="sub-proof"><div class="k">Bukti Kerja</div><div class="v">Kajian arsitektur dan justifikasi belanja TIK untuk pemerintah kabupaten, disusun berbasis instrumen regulasi SPBE dan tabel nilai bisnis SI/TI. <em>Detail dapat didiskusikan dalam pertemuan.</em></div></div>
-      </div>
-
-      <div class="sub">
-        <div class="sub-head"><span class="sub-solves">Capability Building</span><span class="sub-model">KELAS &amp; PROGRAM IN-HOUSE</span></div>
-        <h3>Pelatihan Manajemen Investasi TI — Trainer Bersertifikasi</h3>
-        <p>Kelas terstruktur bagi tim strategi, PMO, dan pengelola TIK: metodologi valuasi investasi, penyusunan business case yang dapat dipertahankan, hingga praktik tata kelola. Dibawakan oleh trainer bersertifikasi BNSP.</p>
-        <div class="sub-proof"><div class="k">Bukti Kerja</div><div class="v">Silabus Kelas Manajemen Investasi TI (MITI) — program berjalan sejak Februari 2026, materi berbasis Information Economics dan studi kasus Indonesia. Sertifikasi Trainer BNSP (berlaku s.d. 2029).</div></div>
-      </div>
-
-      <div class="sub">
-        <div class="sub-head"><span class="sub-solves">Capability Building</span><span class="sub-model">PROGRAM COACHING 3 BULAN</span></div>
-        <h3>AI Workflow Coaching untuk Tim Bisnis</h3>
-        <p>Pendampingan penggunaan AI pada alur kerja nyata perusahaan — bukan demo alat, melainkan integrasi AI ke proses analisis, dokumentasi, dan pengambilan keputusan tim Anda, dengan rambu tata kelola yang jelas.</p>
-        <div class="sub-proof"><div class="k">Bukti Kerja</div><div class="v">Sertifikasi AI Marketing Strategy (2026) dan praktik langsung: seluruh pipeline produksi kajian advisory saya — riset, kuantifikasi, hingga dokumen final — dibangun dengan alur kerja berbantuan AI yang saya ajarkan.</div></div>
+        <div class="sub-head"><span class="sub-solves">Pendampingan praktis</span><span class="sub-model">Program · 3 bulan</span></div>
+        <h3>Pendampingan Penggunaan AI untuk Alur Kerja Bisnis</h3>
+        <div class="en">AI Workflow Coaching</div>
+        <p>Bukan demonstrasi perangkat lunak. Ini pendampingan menanamkan AI ke dalam pekerjaan nyata tim Anda — menyusun analisis, menyiapkan dokumen, dan mengambil keputusan — lengkap dengan rambu tata kelola agar penggunaannya aman, konsisten, dan bisa diaudit.</p>
+        <div class="sub-proof"><div class="k">Bukti kerja</div><div class="v">Sertifikasi AI Marketing Strategy (2026), dan praktik langsung: seluruh proses produksi kajian advisory saya — mulai dari riset, perhitungan manfaat, hingga dokumen akhir — dibangun dengan alur kerja berbantuan AI yang persis saya ajarkan.</div></div>
       </div>
 
     </div>
@@ -746,11 +837,12 @@ footer .cp{font-size:.74rem;color:var(--dim);margin-top:10px;letter-spacing:.5px
 </section>
 
 <!-- ==================== ENGAGEMENTS (paper) ==================== -->
-<section id="projects" class="bg-paper" style="background:var(--paper-2)">
+<section id="projects" class="bg-paper bg-paper-2">
   <div class="wrap">
     <div class="reveal">
-      <div class="sec-eyebrow">Rekam Jejak</div>
-      <h2 class="sec-title">Bukti kerja &amp; engagement terpilih</h2>
+      <div class="sec-eyebrow">Rekam jejak</div>
+      <h2 class="sec-title">Contoh penugasan yang pernah saya kerjakan</h2>
+      <p class="sub-intro">Ringkasan bentuk pekerjaan lintas sektor. Nama klien sebagian tidak disebutkan karena terikat perjanjian kerahasiaan.</p>
     </div>
     <div class="grid-3 reveal">
       <!-- ulangi blok .proj; ganti dengan engagement nyata Anda (anonimkan klien bila perlu) -->
@@ -900,6 +992,10 @@ footer .cp{font-size:.74rem;color:var(--dim);margin-top:10px;letter-spacing:.5px
         </div>
       </div>
 
+    </div>
+  </div>
+</section>
+
 <!-- ==================== TRACK RECORD / SEKTOR (paper) ==================== -->
 <section id="hof" class="bg-paper">
   <div class="wrap">
@@ -940,9 +1036,9 @@ footer .cp{font-size:.74rem;color:var(--dim);margin-top:10px;letter-spacing:.5px
   <div class="wrap">
     <div class="reveal">
       <div class="sec-eyebrow">Kontak</div>
-      <h2 class="sec-title">Mari diskusikan agenda transformasi Anda</h2>
+      <h2 class="sec-title">Mari bicara — konsultasi pertama gratis.</h2>
     </div>
-    <p class="contact-txt reveal">Tertarik pada advisory strategi TI, pendampingan transformasi digital, kajian investasi pra-pengadaan, atau penerapan pemerintahan digital di organisasi Anda? Hubungi saya kapan saja.</p>
+    <p class="contact-txt reveal">Konsultasi pertama tidak dipungut biaya. Ceritakan masalah teknologi yang sedang Anda hadapi, dan saya akan sampaikan apakah saya orang yang tepat untuk membantunya — atau merekomendasikan orang lain jika bukan.</p>
     <div class="avail reveal"><span class="dot-live"></span> Menerima engagement baru</div>
     <div class="contact-grid reveal">
       <div class="contact-card" id="emailCard">
